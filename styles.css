@@ -275,15 +275,15 @@ body {
 
 .impact-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-lg);
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-md);
 }
 
 .impact-card {
     background: var(--bg-white);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-lg);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     text-align: center;
     transition: all 0.3s ease;
     box-shadow: var(--shadow-sm);
@@ -1256,12 +1256,12 @@ body {
     }
     
     .impact-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 6pt !important;
+        grid-template-columns: repeat(6, 1fr) !important;
+        gap: 4pt !important;
     }
     
     .impact-card {
-        padding: 5pt !important;
+        padding: 4pt !important;
         border: 1px solid #ddd !important;
         box-shadow: none !important;
         border-radius: 3pt !important;
@@ -1294,10 +1294,11 @@ body {
     /* Summary section - More compact */
     .summary-section {
         background: #f8f9fa !important;
-        padding: 6pt !important;
+        padding: 8pt !important;
         border-radius: 3pt !important;
         border: 1px solid #e9ecef !important;
-        margin-bottom: 6pt !important;
+        margin-top: 8pt !important;
+        margin-bottom: 10pt !important;
     }
     
     .summary-lead {
