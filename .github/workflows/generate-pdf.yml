@@ -1,0 +1,87 @@
+name: Generate CV PDF
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'index.html'
+      - 'styles.css'
+      - 'script.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Puppeteer
+        run: npm install puppeteer
+        
+      - name: Generate PDF
+        run: |
+          node -e "
+          const puppeteer = require('puppeteer');
+          const fs = require('fs');
+          const path = require('path');
+          
+          (async () => {
+            const browser = await puppeteer.launch({
+              headless: 'new',
+              args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
+            
+            const page = await browser.newPage();
+            
+            // Load the local HTML file
+            const htmlPath = path.join(process.cwd(), 'index.html');
+            
+            await page.goto(\`file://\${htmlPath}\`, { 
+              waitUntil: 'networkidle0',
+              timeout: 30000 
+            });
+            
+            // Wait for fonts and animations
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Generate PDF with print CSS
+            await page.pdf({
+              path: 'David-Pizzi-CV.pdf',
+              format: 'A4',
+              printBackground: true,
+              margin: {
+                top: '0.4in',
+                right: '0.4in',
+                bottom: '0.4in',
+                left: '0.4in'
+              }
+            });
+            
+            await browser.close();
+            console.log('PDF generated successfully!');
+          })();
+          "
+          
+      - name: Commit PDF if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add David-Pizzi-CV.pdf
+          git diff --staged --quiet || git commit -m "Auto-generate PDF from latest CV"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
