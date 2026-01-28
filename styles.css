@@ -521,7 +521,7 @@ body {
     animation: fadeInUp 1s ease 1.5s forwards;
     opacity: 0;
     z-index: 10;
-    margin-top: var(--space-xl);
+    margin-top: 6rem;
     position: relative;
 }
 
@@ -1821,21 +1821,28 @@ body {
     .scroll-indicator {
         margin-top: var(--space-lg);
     }
-    
-    .scroll-indicator span {
-        display: none; /* Hide text on tablet, keep mouse icon */
-    }
 }
 
 @media (max-width: 640px) {
     .hero {
-        padding: var(--space-xl);
-        min-height: auto;
+        padding: var(--space-lg) var(--space-md);
+        padding-bottom: 80px; /* Space for scroll indicator */
+        min-height: 100vh;
+        min-height: 100dvh;
         position: relative;
+        justify-content: flex-start;
+        padding-top: var(--space-xl);
     }
     
     .scroll-indicator {
-        margin-top: var(--space-md);
+        margin-top: 3rem;
+        z-index: 100;
+        width: auto;
+    }
+    
+    .scroll-indicator span {
+        display: block;
+        font-size: 0.65rem;
     }
     
     .scroll-mouse {
@@ -1843,13 +1850,50 @@ body {
         height: 32px;
     }
     
-    .container {
-        padding: var(--space-lg);
+    /* Compact hero content on mobile */
+    .profile-image {
+        width: 80px;
+        height: 80px;
     }
     
-    .profile-image {
-        width: 100px;
-        height: 100px;
+    .greeting {
+        font-size: 0.75rem;
+        margin-bottom: var(--space-xs);
+    }
+    
+    .name {
+        font-size: 1.75rem;
+        margin-bottom: var(--space-xs);
+    }
+    
+    .title {
+        font-size: 1rem;
+        margin-bottom: var(--space-xs);
+    }
+    
+    .tagline {
+        font-size: 0.875rem;
+    }
+    
+    .contact-minimal {
+        gap: var(--space-xs);
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-link {
+        font-size: 0.8rem;
+        padding: 2px 0;
+        justify-content: center;
+    }
+    
+    .contact-link svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .container {
+        padding: var(--space-lg);
     }
     
     .impact-grid {
