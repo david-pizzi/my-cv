@@ -489,6 +489,8 @@ body {
     background: linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(241, 245, 249, 1) 100%);
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
     border: 1px solid var(--border-light);
     position: relative;
     overflow: hidden;
