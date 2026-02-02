@@ -1146,7 +1146,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-section::before {
@@ -1177,9 +1178,6 @@ body {
     color: var(--text-primary);
     margin-bottom: var(--space-lg);
     padding-bottom: var(--space-sm);
-    border-bottom: 2px solid transparent;
-    background: linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
-                var(--gradient-primary) border-box;
     display: inline-block;
     position: relative;
 }
@@ -1187,7 +1185,7 @@ body {
 .sidebar-title::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 2px;
@@ -1566,7 +1564,6 @@ body {
     color: var(--accent);
     background: rgba(59, 130, 246, 0.05);
     box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-    transform: translateY(-2px);
 }
 
 /* Security Clearance */
@@ -1581,14 +1578,20 @@ body {
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-sm);
-    background: var(--bg-white);
+    background: transparent;
     border-radius: var(--radius-md);
     border: 1px solid var(--border-light);
+    overflow: hidden;
 }
 
 .clearance-item.active {
     border-color: var(--success);
     background: rgba(16, 185, 129, 0.05);
+}
+
+.clearance-item:not(.active) {
+    background: var(--bg-light);
+    border-color: transparent;
 }
 
 .clearance-badge {

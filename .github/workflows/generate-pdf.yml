@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'index.html'
-      - 'styles.css'
-      - 'script.js'
   workflow_dispatch:
 
 permissions:
