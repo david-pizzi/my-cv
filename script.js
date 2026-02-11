@@ -248,6 +248,53 @@ function initTiltEffect() {
 // SMOOTH SCROLLING
 // ===========================
 
+// ===========================
+// MODAL SYSTEM
+// ===========================
+
+function initModals() {
+    const overlays = document.querySelectorAll('.modal-overlay');
+    const triggers = document.querySelectorAll('.expand-btn');
+
+    function closeAllModals() {
+        document.body.style.overflow = '';
+        overlays.forEach(o => {
+            if (!o.classList.contains('active')) return;
+            o.classList.add('closing');
+            o.addEventListener('animationend', () => {
+                o.classList.remove('active', 'closing');
+            }, { once: true });
+        });
+    }
+
+    triggers.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const modalId = btn.dataset.modal;
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                modal.querySelector('.modal-close')?.focus();
+            }
+        });
+    });
+
+    document.querySelectorAll('.modal-close').forEach(btn => {
+        btn.addEventListener('click', closeAllModals);
+    });
+
+    overlays.forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeAllModals();
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAllModals();
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all animation systems
     createScrollProgress();
@@ -257,6 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticEffect();
     initScrollIndicatorHide();
     initTiltEffect();
+    initModals();
     
     // Add smooth scrolling to all links
     const links = document.querySelectorAll('a[href^="#"]');
