@@ -1,0 +1,10 @@
+# Local IDE/tool settings
+.claude/settings.local.json
+
+# Node.js (from debug/PDF generation scripts)
+node_modules/
+package.json
+package-lock.json
+
+# Windows artifacts
+NUL
