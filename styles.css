@@ -775,37 +775,14 @@ body {
    ========================================= */
 
 .summary-section {
-    background: linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(241, 245, 249, 1) 100%);
-    border-radius: var(--radius-xl);
-    padding: var(--space-2xl);
     margin-top: var(--space-2xl);
     margin-bottom: var(--space-2xl);
-    border: 1px solid var(--border-light);
     position: relative;
-    overflow: hidden;
 }
 
-.summary-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-accent);
-    background-size: 200% 100%;
-    animation: flowingGradient 3s ease-in-out infinite;
-}
-
+.summary-section::before,
 .summary-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
-    pointer-events: none;
+    display: none;
 }
 
 .summary-content {
@@ -2586,7 +2563,8 @@ body {
     .scroll-indicator,
     .scroll-top-btn,
     .modal-overlay,
-    .expand-btn {
+    .expand-btn,
+    .impact-section {
         display: none !important;
     }
     
@@ -2637,7 +2615,7 @@ body {
     .hero {
         background: var(--primary) !important;
         color: white !important;
-        padding: 12pt 16pt !important;
+        padding: 8pt 14pt !important;
         border-bottom: none !important;
         position: relative !important;
         min-height: auto !important;
@@ -2718,13 +2696,13 @@ body {
     
     /* Container */
     .container {
-        padding: 8pt 16pt !important;
+        padding: 6pt 14pt !important;
         max-width: 100% !important;
     }
     
     /* Impact section - Ultra compact */
     .impact-section {
-        margin-bottom: 6pt !important;
+        margin-bottom: 4pt !important;
     }
     
     .impact-grid {
@@ -2769,7 +2747,7 @@ body {
     
     /* Section headers */
     .section {
-        margin-bottom: 8pt !important;
+        margin-bottom: 6pt !important;
     }
     
     .section-header {
@@ -2783,12 +2761,16 @@ body {
     
     /* Summary section - More compact */
     .summary-section {
-        background: #f8f9fa !important;
-        padding: 6pt 8pt !important;
-        border-radius: 3pt !important;
-        border: 1px solid #e9ecef !important;
-        margin-top: 6pt !important;
-        margin-bottom: 6pt !important;
+        background: none !important;
+        padding: 4pt 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        margin-top: 4pt !important;
+        margin-bottom: 10pt !important;
+    }
+
+    .summary-content {
+        padding: 0 !important;
     }
 
     .summary-lead {
@@ -2839,13 +2821,13 @@ body {
     
     /* Experience */
     .experience-block {
-        margin-bottom: 8pt !important;
-        padding-bottom: 8pt !important;
+        margin-bottom: 5pt !important;
+        padding-bottom: 5pt !important;
         /* Allow breaks inside large experience blocks like Capgemini */
     }
     
     .company-header {
-        margin-bottom: 6pt !important;
+        margin-bottom: 4pt !important;
         break-after: avoid !important; /* Keep header with first role */
     }
     
@@ -2863,7 +2845,7 @@ body {
     }
     
     .role {
-        margin-bottom: 6pt !important;
+        margin-bottom: 4pt !important;
         padding-left: 8pt !important;
         border-left-width: 1px !important;
         break-inside: avoid !important; /* Avoid breaking inside individual roles */
@@ -2934,8 +2916,8 @@ body {
         background: #f8f9fa !important;
         border: 1px solid #e9ecef !important;
         border-radius: 4pt !important;
-        padding: 8pt !important;
-        margin-bottom: 8pt !important;
+        padding: 6pt !important;
+        margin-bottom: 6pt !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
     }
@@ -3272,7 +3254,6 @@ body {
     }
     
     /* Avoid breaks */
-    .experience-block,
     .sidebar-section,
     .highlight {
         break-inside: avoid !important;
